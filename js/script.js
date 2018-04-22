@@ -1,42 +1,58 @@
-// var squares = document.querySelectorAll(".wrapper>div");
-// function Blush() {
-//     for(var i = 0; i < 16; i++){
-//         squares[i].style.background = "gray";
-//     }
-//     var randomRed = Math.floor(Math.random()*255);
-//     var randomBlue = Math.floor(Math.random()*255);
-//     var randomGreen = Math.floor(Math.random()*255);
-//     var randomSquare = Math.floor(Math.random()*16);
-    
-//     squares[randomSquare].style.background = "rgb("+randomRed+","+randomBlue+","+randomGreen+")";
-// }
-// setInterval(Blush, 800);
-
 var tennisBall = document.querySelector(".ball");
 var xSign = 1; // left sign
 var ySign = 1; // top sign
-var leftPos = 10;
-var topPos = 10;
+var leftPos = 350;
+var topPos = 150;
+var speed = 5;
+
+//creating a variable to count the number of times the mouse is dragged
+var dragCount = 0;
+
+(function(){
+    document.onmouseup = function(event){
+        if(dragCount == 0){
+            // storing two random numbers either 0 or 1
+            var randomXSign = Math.round(Math.random());
+            var randomYSign = Math.round(Math.random());
+            //using those numbers to randomly choose direction
+                // X-Direction
+            if (randomXSign == 0){
+                xSign = -1;
+            }
+            if (randomXSign == 1){
+                xSign = 1;
+            }
+                // Y-Direcion
+            if (randomYSign == 0){
+                ySign = -1;
+            }
+            if (randomYSign == 1){
+                ySign = 1;
+            }
+            // setting interval for move function
+            setInterval(Move, 20);
+        }
+        dragCount++;
+    }
+})();
 
 function Move() 
 {
-    if(leftPos==0){
+    if(leftPos==50){
         xSign = xSign*(-1);
     }
-    if(leftPos==770){
+    if(leftPos==720){
         xSign = xSign*(-1);
     }
-    if(topPos==0){
+    if(topPos==50){
         ySign = ySign*(-1);
     }
-    if(topPos==370){
-        ySign = ySign*(-1);
-        
+    if(topPos==360){
+        ySign = ySign*(-1);        
     }
-    leftPos = leftPos + (5*xSign);
-    topPos = topPos + (5*ySign);
+    leftPos = leftPos + (speed*xSign);
+    topPos = topPos + (speed*ySign);
     tennisBall.style.left = leftPos+"px";
     tennisBall.style.top = topPos+"px";
     console.log(ySign);
 }
-setInterval(Move, 50);

@@ -4,10 +4,13 @@ body {
 
 .box {
   width: 800px;
-  height: 400px;
+  height: 440px;
   border: 1px solid black;
   margin: 20px auto;
   position: relative;
+  background-image: url("../img/billiardTable.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .box .ball {
   width: 30px;
@@ -16,8 +19,10 @@ body {
   border: 1px solid gray;
   position: absolute;
   box-shadow: inset 0px 0px 10px gray;
-  top: 10px;
-  left: 10px;
+  background: white;
+  /*changed the top left right in css not scss (they were 10;10 before)*/
+  top: 150px; 
+  left: 350px;
 }
 
 /*# sourceMappingURL=style.css.map */
